@@ -1,0 +1,22 @@
+# IDE extensions
+.vscode/*
+.idea/*
+*.iml
+
+# Node ddependency directories
+node_modules/
+.node_repl_history
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# other files
+test.js
+*.docx
+*.pdf
+
+# orther directories
+test/
