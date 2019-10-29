@@ -7,6 +7,10 @@ var mongoose = require("mongoose");
 
 var indexRouter = require('./routes/index');
 
+//api-catalog routes
+var apiCatalog = require('./routes/api-catalog');
+
+
 var app = express();
 
 // //mLab connection
@@ -43,6 +47,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+
+//register api catalof routes
+app.use('/api', apiCatalog);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
