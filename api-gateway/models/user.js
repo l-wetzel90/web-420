@@ -9,24 +9,22 @@
 */
 
 //variable/required
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+
 
 // define the user schema
-
-var userSchema = new Schema({
+var userSchema = new mongoose.Schema({
     username: String,
     password: String,
     email: String
 });
 
-//define user model
-var User = mongoose.model("User", userSchema);
 
-// make the userSchema accessible
-module.exports = User;
+const User = module.exports = mongoose.model('User', userSchema);
 
-//user.save is used to add a new user in database
+//database queries
+
+// user.save is used to add a new user in our database
 module.exports.add = (user, callback) => {
     user.save(callback);
 };
@@ -34,4 +32,9 @@ module.exports.add = (user, callback) => {
 module.exports.getById = (id, callback) => {
     var query = { _id: id };
     User.findById(query, callback);
+};
+
+module.exports.getOne = (e, callback) => {
+    var query = { email: e };
+    User.findOne(query, callback);
 };

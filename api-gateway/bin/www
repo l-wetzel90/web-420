@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+var config = require('../config');
 
 /**
  * Module dependencies.
@@ -7,7 +8,6 @@
 var app = require('../app');
 var debug = require('debug')('api-gateway:server');
 var http = require('http');
-var config = require('../config');
 
 /**
  * Get port from environment and store in Express.
