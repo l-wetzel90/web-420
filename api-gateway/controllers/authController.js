@@ -5,22 +5,27 @@ var config = require("../config");
 
 //register a new user on post
 exports.user_register = function(req, res) {
+  //create hash pw with bcrypt
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
+  //create user from schema to use in add query
   var newUser = new User({
     username: req.body.username,
     password: hashedPassword,
     email: req.body.email
   });
 
+  //add user from method above to db
   User.add(newUser, (err, user) => {
-    if (err)
+    if (err)//if there was a problem adding throw err
       return res.status(500).send("There was a problem registering the user.");
 
+      //otherwise create token for userid
     var token = jwt.sign({ id: user._id }, config.web.secret, {
       expiresIn: 86400 // 24 hours
     });
 
+    //says that token and user are all good
     res.status(200).send({ auth: true, token: token });
   });
 };
